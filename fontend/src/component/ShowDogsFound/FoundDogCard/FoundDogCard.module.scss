@@ -1,0 +1,34 @@
+@import "../../../style/animations";
+
+.Card {
+  $self: &;
+  margin: 10px 0 10px 0;
+
+  &__Image {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    margin: 0 0 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  &__Title {
+    display: block;
+    text-align: center;
+  }
+
+  &_isLoading {
+    #{$self}__Image {
+      @include useStandardFlickerAnimation(#eee, 100%, 4);
+    }
+
+    #{$self}__Title {
+      @include useStandardFlickerAnimation(#eee, 100%, 4);
+      color: transparent;
+      border-radius: 5px;
+    }
+  }
+}
