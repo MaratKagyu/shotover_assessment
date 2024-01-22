@@ -1,0 +1,41 @@
+
+.DefaultLayout {
+  display: block;
+
+  &__Menu {
+    display: flex;
+    height: 50px;
+    padding: 0 10px;
+    background: #fff;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__MenuLeft,
+  &__MenuRight, {
+    display: flex;
+    align-items: center;
+  }
+
+  &__Logo {
+    flex: 0 0 auto;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 20px 0 0;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__Link {
+    margin: 0 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  &__Body {
+    display: block;
+  }
+}

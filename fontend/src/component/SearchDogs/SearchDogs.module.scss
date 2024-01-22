@@ -1,0 +1,54 @@
+
+.SearchForm {
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 5px;
+  height: 300px;
+  margin: 30px auto;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__Form {
+    text-align: center;
+  }
+
+  &__Label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+  }
+
+  &__TextInput {
+    margin: 0 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px;
+    width: 100px;
+    text-align: center;
+  }
+
+  &__Button {
+    $buttonColor: #3dbb71;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background: $buttonColor;
+    color: #fff;
+    font-weight: 800;
+
+    &:hover {
+      background: darken($buttonColor, 10%);
+      cursor: pointer;
+    }
+
+    &:disabled {
+      background: #ccc;
+    }
+  }
+}
