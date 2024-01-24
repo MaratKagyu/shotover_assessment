@@ -3,8 +3,11 @@ import classes from "./ShowDogsFound.module.scss";
 import FoundDogCard from "./FoundDogCard/FoundDogCard";
 import useDogListManager from "../../hook/useDogListManager";
 
-const ShowDogsFound = () => {
-  const count = 50;
+const ShowDogsFound = (
+  {
+    count = 50,
+  }
+) => {
   const {
     load,
     dogList,
@@ -15,6 +18,7 @@ const ShowDogsFound = () => {
 
   useEffect(() => {
     // If the dog list wasn't loaded before, load it manually
+    // (if the user reloaded the page, for example)
     if ((isLoading || dogList) && (count === requestedCount)) {
       return;
     }
@@ -83,7 +87,7 @@ const ShowDogsFound = () => {
           {(new Array(count)).fill(0).map((item, itemIdx) => (
             <FoundDogCard
               key={itemIdx}
-              name=""
+              name="Anonymous"
               imageUrl=""
               isLoading={true}
             />

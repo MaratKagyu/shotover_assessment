@@ -10,7 +10,6 @@ export const DogListProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const load = useCallback(async (count) => {
-    console.log('Load called');
     const validatedCount = parseInt(count, 10);
     if (
       !validatedCount
@@ -24,10 +23,18 @@ export const DogListProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
+      // TODO: Remove this timeout
+      await new Promise((success) => setTimeout(success, 1000));
+
       const result = await ApiRoutes.getDogList(validatedCount);
       setDogList(result.data.message.map((dogRecord, recordIdx) => ({
         id: recordIdx + 1,
+        // Since Breed is extracted by the Backend, no need to handle this here
+        // But since it was mentioned in the task, I'll leave a commented line extracting the breed
+        // Uncomment this:
+        // breed: dogRecord.image.replace(/^.*breeds\/([^/]+).*$/i, '$1'),
         breed: dogRecord.breed,
+        // Example: "https://images.dog.ceo/breeds/sheepdog-english/n02105641_4577.jpg"
         image: dogRecord.image,
       })));
     } catch (error) {

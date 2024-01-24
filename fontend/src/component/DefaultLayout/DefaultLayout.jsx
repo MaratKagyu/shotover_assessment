@@ -1,5 +1,7 @@
 import React from "react";
 import classes from "./DefaultLayout.module.scss";
+import AppRoutes from "../../tools/AppRoutes";
+import {Link} from "react-router-dom";
 
 const DefaultLayout = (
   {
@@ -18,12 +20,15 @@ const DefaultLayout = (
           </a>
         </div>
         <div className={classes.DefaultLayout__MenuRight}>
-          <a href="/" className={classes.DefaultLayout__Link}>
+          <Link
+            to={AppRoutes.home()}
+            className={classes.DefaultLayout__Link}
+          >
             Home
-          </a>
-          <a href="/catalog" className={classes.DefaultLayout__Link}>
+          </Link>
+          <Link to={AppRoutes.catalog()} className={classes.DefaultLayout__Link}>
             Catalog
-          </a>
+          </Link>
         </div>
       </div>
       <div className={classes.DefaultLayout__Body}>
