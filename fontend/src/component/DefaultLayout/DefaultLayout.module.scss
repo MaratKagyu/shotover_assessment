@@ -1,3 +1,4 @@
+@import "../../style/include-media";
 
 .DefaultLayout {
   display: block;
@@ -37,5 +38,10 @@
 
   &__Body {
     display: block;
+    padding: 0 10px;
+
+    @include media('<=phone') {
+      padding: 0 20px;
+    }
   }
 }

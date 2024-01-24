@@ -1,4 +1,4 @@
-import {createContext, useCallback, useMemo, useState} from "react";
+import {createContext, useCallback, useState} from "react";
 import ApiRoutes from "../tools/Api/ApiRoutes";
 
 export const DogListContext = createContext(null);

@@ -1,4 +1,5 @@
 @import "../../../style/animations";
+@import "../../../style/include-media";
 
 .Card {
   $self: &;
@@ -18,6 +19,11 @@
   &__Title {
     display: block;
     text-align: center;
+    font-size: 16px;
+
+    @include media('<=phone') {
+      font-size: 18px;
+    }
   }
 
   &_isLoading {
