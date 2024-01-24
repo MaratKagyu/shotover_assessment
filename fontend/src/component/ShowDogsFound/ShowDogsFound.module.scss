@@ -25,6 +25,26 @@
     }
   }
 
+  &__Error {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #fff;
+    background: #ce1c1c;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+
+  &__NeutralNotification {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+  }
+
   &__List {
     display: grid;
     grid-template-columns: repeat( auto-fill, minmax(250px, 1fr));

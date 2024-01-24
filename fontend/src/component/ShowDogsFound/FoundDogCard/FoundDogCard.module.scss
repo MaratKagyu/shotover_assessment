@@ -22,6 +22,7 @@
 
   &_isLoading {
     #{$self}__Image {
+      border: 1px solid transparent;
       @include useStandardFlickerAnimation(#eee, 100%, 4);
     }
 

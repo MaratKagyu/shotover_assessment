@@ -1,8 +1,26 @@
-import React, {useCallback, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import classes from "./ShowDogsFound.module.scss";
 import FoundDogCard from "./FoundDogCard/FoundDogCard";
+import useDogListManager from "../../hook/useDogListManager";
 
 const ShowDogsFound = () => {
+  const count = 50;
+  const {
+    load,
+    dogList,
+    isLoading,
+    requestedCount,
+    errorMessage,
+  } = useDogListManager();
+
+  useEffect(() => {
+    // If the dog list wasn't loaded before, load it manually
+    if ((isLoading || dogList) && (count === requestedCount)) {
+      return;
+    }
+    load(count);
+  }, [dogList, isLoading, load, count, requestedCount]);
+
   const [
     searchText,
     setSearchText,
@@ -12,23 +30,15 @@ const ShowDogsFound = () => {
     setSearchText(event.currentTarget.value);
   }, []);
 
-  const dogList = useMemo(() => {
-    return (new Array(50)).fill(0).map((item, itemIdx) => ({
-      id: itemIdx,
-      imageUrl: '/logo512.png',
-      name: `Dog No ${itemIdx + 1}`,
-    }));
-  }, []);
-
   const filteredDogList = useMemo(() => {
-    if (!searchText) {
+    if (!searchText || !dogList) {
       return dogList;
     }
 
     const lowerCaseSearchText = searchText.toLowerCase();
 
     return dogList.filter(
-      (dogData) => dogData.name.toLowerCase().split(lowerCaseSearchText).length > 1
+      (dogData) => dogData.breed.toLowerCase().split(lowerCaseSearchText).length > 1
     )
   }, [dogList, searchText]);
 
@@ -43,16 +53,43 @@ const ShowDogsFound = () => {
         />
       </div>
 
-      <div className={classes.ShowDogs__List}>
-        {filteredDogList.map((dogData) => (
-          <FoundDogCard
-            key={dogData.id}
-            name={dogData.name}
-            imageUrl={dogData.imageUrl}
-            isLoading={false}
-          />
-        ))}
-      </div>
+      {(!!errorMessage) && (
+        <div className={classes.ShowDogs__Error}>
+          {errorMessage}
+        </div>
+      )}
+
+      {filteredDogList ? (
+        <>
+          {(!filteredDogList.length && !errorMessage) && (
+            <div className={classes.ShowDogs__NeutralNotification}>
+              No dogs found
+            </div>
+          )}
+          <div className={classes.ShowDogs__List}>
+            {filteredDogList.map((dogData) => (
+              <FoundDogCard
+                key={dogData.id}
+                name={dogData.breed}
+                imageUrl={dogData.image}
+                isLoading={false}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        // Loading state
+        <div className={classes.ShowDogs__List}>
+          {(new Array(count)).fill(0).map((item, itemIdx) => (
+            <FoundDogCard
+              key={itemIdx}
+              name=""
+              imageUrl=""
+              isLoading={true}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 };
