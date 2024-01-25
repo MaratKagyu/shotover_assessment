@@ -23,16 +23,10 @@ To change the ports see `docker-compose.yml`
 
 ## Run app without virtualisation
 ### Backend: 
-Setup local Python environment:
-```bash
-cd ./backend
-python3 -m venv .venv
-. .venv/bin/activate
-```
-
 Install dependencies
 
 ```bash
+cd ./backend
 pip3 install wheel
 pip3 install -r requirements.txt
 ```
