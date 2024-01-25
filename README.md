@@ -16,7 +16,7 @@ docker-compose up
 
 The project will be available at:
 - React app - http://localhost:3000 
-- Flash app - http://localhost:8080  
+- Flask app - http://localhost:8080  
  
 To change the ports see `docker-compose.yml`
 
