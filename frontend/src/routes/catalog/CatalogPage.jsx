@@ -1,7 +1,6 @@
 import React, {useMemo} from "react";
 import DefaultLayout from "../../component/DefaultLayout/DefaultLayout";
 import ShowDogsFound from "../../component/ShowDogsFound/ShowDogsFound";
-import {DogListProvider} from "../../context/DogListContext";
 import {useLocation} from "react-router-dom";
 
 const DEFAULT_COUNT = 10;

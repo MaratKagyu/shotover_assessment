@@ -1,5 +1,5 @@
 
-export default {
+const SearchDogsI18n= {
   dogs: (amount) => {
     if (amount === 1) {
       return "dog!";
@@ -7,3 +7,5 @@ export default {
     return "dogs!";
   }
 };
+
+export default SearchDogsI18n;
